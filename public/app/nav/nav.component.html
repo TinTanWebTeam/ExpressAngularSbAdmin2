@@ -1,0 +1,83 @@
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['/home']">Express Angular</a>
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <li *ngIf="!_authStatus">
+                    <a [routerLink]="['/login']" style="color:white">Login</a>
+                </li>
+                <li *ngIf="!_authStatus">
+                    <a [routerLink]="['/register']" style="color:white">Register</a>
+                </li>
+                <li class="dropdown" *ngIf="_authStatus">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:white">
+                        <i class="fa fa-user fa-fw"></i>Hello {{ _authUser.username }}! <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a>
+                                <i class="fa fa-user fa-fw"></i>
+                                User Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-gear fa-fw"></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a (click)="logout()">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a [routerLink]="['/home']"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;Home</a>
+                    </li>
+                    <li *ngIf="_authStatus">
+                        <a [routerLink]="['/about']"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;About</a>
+                    </li>
+                    <li *ngIf="_authStatus">
+                        <a href="javascript:;" (click)="showHideSubMenu($event)">
+                            <i class="fa fa-car"></i>&nbsp;&nbsp;Menu
+                            <i class="fa fa-arrow-down pull-right"></i>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Submenu 1</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Submenu 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="page-wrapper">
+        <div class="container-fluid" style="padding-top:15px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
